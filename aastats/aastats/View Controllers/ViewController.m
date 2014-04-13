@@ -25,12 +25,14 @@
 }
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) NSString *intervalType;
+@property (nonatomic) BOOL pinched;
+
 @end
 
 @implementation ViewController
 
 @synthesize reachability = _reachability, arrayOfCompanies = _arrayOfCompanies,
-companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, user = _user, intervalType = _intervalType;
+companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, user = _user, intervalType = _intervalType,pinched = _pinched;
 
 
 
@@ -40,6 +42,9 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    _pinched = NO;
+    UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchDetected:)];
+    [self.view addGestureRecognizer:pinchRecognizer];
     
 	_intervalType = @"today";
     
@@ -53,6 +58,44 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 	[self processUsers:self];
 }
 
+
+- (void)pinchDetected:(UIPinchGestureRecognizer *)pinchRecognizer
+{
+    _pinched = YES;
+    [_companyTableView reloadData];
+    
+}
+- (void) headerTapped: (UIButton*) sender
+{
+    _pinched = NO;
+    [_companyTableView reloadData];
+    
+}
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    /* Create custom view to display section header... */
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont boldSystemFontOfSize:12]];
+    NSString *string = @"section header";
+    [label setText:string];
+    [view addSubview:label];
+    UIButton *button = [[UIButton alloc] initWithFrame: CGRectMake(0.0, 0.0, 320.0, 80.0)] ;
+    button.alpha = 0.7;
+    // [button setImage: myPNGImage forState: UIControlStateNormal];
+    
+    /* Prepare target-action */
+    [button addTarget: self action: @selector(headerTapped:)
+     forControlEvents: UIControlEventTouchUpInside];
+    
+    [view addSubview: button];
+    
+    
+    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+    return view;
+}
 #pragma mark -
 #pragma mark API call
 - (IBAction)processUsers:(id)sender {
@@ -249,10 +292,18 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 #pragma mark - Table Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+	return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if(_pinched){
+        return 0;
+    }else{
+       return [_arrayOfCompanies count];
+    }
+    
+    
 	return [_arrayOfCompanies count];
 }
 
@@ -285,7 +336,13 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
      return cell;
 	 */
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	
+   	_pinched = NO;
+    // [self.navigationController pushViewController:self.editMyClassViewController animated:YES];
+	
+}
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
