@@ -21,6 +21,8 @@
 		28CA1DC618FAD0F7005C5AD4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CA1DA818FAD0F7005C5AD4 /* UIKit.framework */; };
 		28CA1DCE18FAD0F7005C5AD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1DCC18FAD0F7005C5AD4 /* InfoPlist.strings */; };
 		28CA1DD018FAD0F7005C5AD4 /* aastatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CA1DCF18FAD0F7005C5AD4 /* aastatsTests.m */; };
+		28CA1DDE18FAD46B005C5AD4 /* project_setup in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1DDD18FAD46B005C5AD4 /* project_setup */; };
+		28CA1DE018FAD47E005C5AD4 /* AA Stats App.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1DDF18FAD47E005C5AD4 /* AA Stats App.markdown */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		28CA1DCB18FAD0F7005C5AD4 /* aastatsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "aastatsTests-Info.plist"; sourceTree = "<group>"; };
 		28CA1DCD18FAD0F7005C5AD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		28CA1DCF18FAD0F7005C5AD4 /* aastatsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aastatsTests.m; sourceTree = "<group>"; };
+		28CA1DDD18FAD46B005C5AD4 /* project_setup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = project_setup; path = Assests/reference/project_setup; sourceTree = "<group>"; };
+		28CA1DDF18FAD47E005C5AD4 /* AA Stats App.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "AA Stats App.markdown"; path = "Assests/reference/AA Stats App.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 		28CA1DAA18FAD0F7005C5AD4 /* aastats */ = {
 			isa = PBXGroup;
 			children = (
+				28CA1DD918FAD392005C5AD4 /* Assets */,
 				28CA1DB318FAD0F7005C5AD4 /* AppDelegate.h */,
 				28CA1DB418FAD0F7005C5AD4 /* AppDelegate.m */,
 				28CA1DB618FAD0F7005C5AD4 /* Main.storyboard */,
@@ -150,6 +155,23 @@
 				28CA1DCC18FAD0F7005C5AD4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		28CA1DD918FAD392005C5AD4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				28CA1DDA18FAD39B005C5AD4 /* reference */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		28CA1DDA18FAD39B005C5AD4 /* reference */ = {
+			isa = PBXGroup;
+			children = (
+				28CA1DDF18FAD47E005C5AD4 /* AA Stats App.markdown */,
+				28CA1DDD18FAD46B005C5AD4 /* project_setup */,
+			);
+			name = reference;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +252,8 @@
 			files = (
 				28CA1DBD18FAD0F7005C5AD4 /* Images.xcassets in Resources */,
 				28CA1DAF18FAD0F7005C5AD4 /* InfoPlist.strings in Resources */,
+				28CA1DE018FAD47E005C5AD4 /* AA Stats App.markdown in Resources */,
+				28CA1DDE18FAD46B005C5AD4 /* project_setup in Resources */,
 				28CA1DB818FAD0F7005C5AD4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
