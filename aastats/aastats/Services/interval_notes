@@ -1,0 +1,15 @@
+Url: http://hive.indatus.com/precompiled_reports/{interval}/{company_id}
+
+Method: GET
+
+intervals:
+* today
+* yesterday
+* this_week
+* last_week
+* this_month
+* last_month
+* this_year
+* last_year
+
+company_id
