@@ -127,7 +127,7 @@
 #
 #!xcuserdata/**/xcschemes/*
 
-####
+#########################################################################
 # XCode 4 workspaces - more detailed
 #
 # Workspaces are important! They are a core feature of Xcode - don't exclude them :)
@@ -152,6 +152,11 @@
 #
 #
 .xcuserstate
+UserInterfaceState.xcuserstate
+xcuserstate
+
+
+################################################################
 ####
 # Xcode 4 - Deprecated classes
 #

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class PageController;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) PageController *viewController;
 @end
