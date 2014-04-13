@@ -11,18 +11,21 @@
 
 @interface ViewController : UIViewController
 {
-    Reachability *reachability;
+	Reachability *reachability;
 }
 @property (nonatomic, retain) Reachability *reachability;
 @property (nonatomic, retain) NSMutableArray *arrayOfUserModels;
 @property (nonatomic, retain) NSMutableArray *arrayOfCompanies;
 @property (nonatomic, weak) IBOutlet UITableView *companyTableView;
-
-
 @property (nonatomic, weak) IBOutlet UILabel *label1;
 
+@property (assign, nonatomic) NSInteger index;
+@property (strong, nonatomic) IBOutlet UILabel *screenNumber;
+@property (nonatomic, retain) IBOutlet UIImageView *backgroundImageView;
+
+
 - (IBAction)processUsers:(id)sender;
--(IBAction)selectInterval:(id)sender;
+- (IBAction)selectInterval:(id)sender;
 //-(void)refreshInterval:(NSString *)interval forCompanyId:(NSString *)companyId;
 
 

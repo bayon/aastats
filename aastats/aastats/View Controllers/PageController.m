@@ -4,7 +4,8 @@
 
 
 #import "PageController.h"
-#import "PageChildController.h"
+//#import "PageChildController.h"
+#import "ViewController.h"
 
 @interface PageController ()
 
@@ -21,7 +22,7 @@
     self.pageController.dataSource = self;
     [[self.pageController view] setFrame:[[self view] bounds]];
     
-    PageChildController *initialViewController = [self viewControllerAtIndex:0];
+    ViewController *initialViewController = [self viewControllerAtIndex:0];
     
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
     
@@ -40,18 +41,19 @@
     
 }
 
-- (PageChildController *)viewControllerAtIndex:(NSUInteger)index {
+- (ViewController *)viewControllerAtIndex:(NSUInteger)index {
         
-    PageChildController *childViewController = [[PageChildController alloc] initWithNibName:@"APPChildViewController" bundle:nil];
+    //PageChildController *childViewController = [[PageChildController alloc] initWithNibName:@"APPChildViewController" bundle:nil];
+    ViewController *childViewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     childViewController.index = index;
     
     return childViewController;
     
 }
-
+#pragma mark - Page View Controller
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    
-    NSUInteger index = [(PageChildController *)viewController index];
+    NSLog(@"\n F I L E -> F U N C T I O N : \n %s \n",__FUNCTION__);
+    NSUInteger index = [(ViewController *)viewController index];
     
     if (index == 0) {
         return nil;
@@ -65,8 +67,8 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    
-    NSUInteger index = [(PageChildController *)viewController index];
+    NSLog(@"\n F I L E -> F U N C T I O N : \n %s \n",__FUNCTION__);
+    NSUInteger index = [(ViewController *)viewController index];
     
     index++;
     

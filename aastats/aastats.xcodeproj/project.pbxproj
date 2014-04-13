@@ -59,14 +59,11 @@
 		28CA1E3218FAF67F005C5AD4 /* screenshot3.png in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E2B18FAF67F005C5AD4 /* screenshot3.png */; };
 		28CA1E3318FAF67F005C5AD4 /* screenshot4.png in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E2C18FAF67F005C5AD4 /* screenshot4.png */; };
 		28CA1E3418FAF67F005C5AD4 /* screenshot4.png in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E2C18FAF67F005C5AD4 /* screenshot4.png */; };
-		28CA1E3A18FAF6CC005C5AD4 /* PageChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CA1E3618FAF6CC005C5AD4 /* PageChildController.m */; };
-		28CA1E3B18FAF6CC005C5AD4 /* PageChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CA1E3618FAF6CC005C5AD4 /* PageChildController.m */; };
-		28CA1E3C18FAF6CC005C5AD4 /* PageChildController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E3718FAF6CC005C5AD4 /* PageChildController.xib */; };
-		28CA1E3D18FAF6CC005C5AD4 /* PageChildController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E3718FAF6CC005C5AD4 /* PageChildController.xib */; };
 		28CA1E3E18FAF6CC005C5AD4 /* PageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CA1E3918FAF6CC005C5AD4 /* PageController.m */; };
 		28CA1E3F18FAF6CC005C5AD4 /* PageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CA1E3918FAF6CC005C5AD4 /* PageController.m */; };
 		28CA1E4118FAF7A2005C5AD4 /* PageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E4018FAF7A2005C5AD4 /* PageController.xib */; };
 		28CA1E4218FAF7A2005C5AD4 /* PageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E4018FAF7A2005C5AD4 /* PageController.xib */; };
+		28CA1E4418FB0420005C5AD4 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E4318FB0420005C5AD4 /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,12 +134,10 @@
 		28CA1E2A18FAF67F005C5AD4 /* screenshot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot2.png; sourceTree = "<group>"; };
 		28CA1E2B18FAF67F005C5AD4 /* screenshot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot3.png; sourceTree = "<group>"; };
 		28CA1E2C18FAF67F005C5AD4 /* screenshot4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot4.png; sourceTree = "<group>"; };
-		28CA1E3518FAF6CC005C5AD4 /* PageChildController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageChildController.h; sourceTree = "<group>"; };
-		28CA1E3618FAF6CC005C5AD4 /* PageChildController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageChildController.m; sourceTree = "<group>"; };
-		28CA1E3718FAF6CC005C5AD4 /* PageChildController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageChildController.xib; sourceTree = "<group>"; };
 		28CA1E3818FAF6CC005C5AD4 /* PageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageController.h; sourceTree = "<group>"; };
 		28CA1E3918FAF6CC005C5AD4 /* PageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageController.m; sourceTree = "<group>"; };
 		28CA1E4018FAF7A2005C5AD4 /* PageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageController.xib; sourceTree = "<group>"; };
+		28CA1E4318FB0420005C5AD4 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,15 +288,13 @@
 		28CA1DFB18FAD68F005C5AD4 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				28CA1E3518FAF6CC005C5AD4 /* PageChildController.h */,
-				28CA1E3618FAF6CC005C5AD4 /* PageChildController.m */,
-				28CA1E3718FAF6CC005C5AD4 /* PageChildController.xib */,
 				28CA1E3818FAF6CC005C5AD4 /* PageController.h */,
 				28CA1E3918FAF6CC005C5AD4 /* PageController.m */,
 				28CA1E4018FAF7A2005C5AD4 /* PageController.xib */,
 				28CA1E0018FAD6F6005C5AD4 /* Cells */,
 				28CA1DFC18FAD68F005C5AD4 /* ViewController.h */,
 				28CA1DFD18FAD68F005C5AD4 /* ViewController.m */,
+				28CA1E4318FB0420005C5AD4 /* ViewController.xib */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -436,8 +429,8 @@
 				28CA1E2D18FAF67F005C5AD4 /* screenshot1.png in Resources */,
 				28CA1DE018FAD47E005C5AD4 /* AA Stats App.markdown in Resources */,
 				28CA1E1A18FAD795005C5AD4 /* interval_notes in Resources */,
-				28CA1E3C18FAF6CC005C5AD4 /* PageChildController.xib in Resources */,
 				28CA1DDE18FAD46B005C5AD4 /* project_setup in Resources */,
+				28CA1E4418FB0420005C5AD4 /* ViewController.xib in Resources */,
 				28CA1DB818FAD0F7005C5AD4 /* Main.storyboard in Resources */,
 				28CA1E3118FAF67F005C5AD4 /* screenshot3.png in Resources */,
 				28CA1E2F18FAF67F005C5AD4 /* screenshot2.png in Resources */,
@@ -453,7 +446,6 @@
 				28CA1E3218FAF67F005C5AD4 /* screenshot3.png in Resources */,
 				28CA1E3018FAF67F005C5AD4 /* screenshot2.png in Resources */,
 				28CA1E2518FAEA6C005C5AD4 /* automation_notes in Resources */,
-				28CA1E3D18FAF6CC005C5AD4 /* PageChildController.xib in Resources */,
 				28CA1DCE18FAD0F7005C5AD4 /* InfoPlist.strings in Resources */,
 				28CA1E3418FAF67F005C5AD4 /* screenshot4.png in Resources */,
 				28CA1E1B18FAD795005C5AD4 /* interval_notes in Resources */,
@@ -487,7 +479,6 @@
 				28CA1DF218FAD5EB005C5AD4 /* Company.m in Sources */,
 				28CA1E1C18FAD795005C5AD4 /* Reachability.m in Sources */,
 				28CA1E3E18FAF6CC005C5AD4 /* PageController.m in Sources */,
-				28CA1E3A18FAF6CC005C5AD4 /* PageChildController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +495,6 @@
 				28CA1E3F18FAF6CC005C5AD4 /* PageController.m in Sources */,
 				28CA1E0A18FAD6F6005C5AD4 /* RoleCell.m in Sources */,
 				28CA1E1118FAD73A005C5AD4 /* Constants.m in Sources */,
-				28CA1E3B18FAF6CC005C5AD4 /* PageChildController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
