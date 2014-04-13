@@ -26,7 +26,7 @@
 @end
 
 @implementation ViewController
-
+@synthesize sharedManager = _sharedManager;
 @synthesize reachability = _reachability, arrayOfCompanies = _arrayOfCompanies,
 companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, user = _user, intervalType = _intervalType, pinched = _pinched;
 
@@ -38,6 +38,7 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 
 	if (self) {
 		// Custom initialization
+        _sharedManager = [Manager sharedManager];
 	}
 
 	return self;
@@ -61,8 +62,12 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(afterIntervalAsyncThreadCompletes:) name:kNotifyIntervalSuccess object:asyncNetwork];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(intervalDataFailed) name:kNotifyIntervalFail object:nil];
 
-
-	[self processUsers:self];
+    // L E F T   O F F   H E R E   (put BOOL in Manager for user service flag.
+    if(!sharedManager.userDataDownloaded){
+        [self processUsers:self];
+        
+    }
+	
 }
 
 - (void)pinchDetected:(UIPinchGestureRecognizer *)pinchRecognizer {
@@ -72,6 +77,8 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 }
 
 - (void)headerTapped:(UIButton *)sender {
+    NSLog(@"\n F I L E -> F U N C T I O N : \n %s \n", __FUNCTION__);
+
 	_pinched = NO;
 	[_companyTableView reloadData];
 }
@@ -126,7 +133,7 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 // after network call
 
 - (void)dataFailed {
-	NSString *msg =  @"Failed to get data .";
+	NSString *msg =  @"user Failed to get data .";
 	UIAlertView *alertmsg = [[UIAlertView alloc] initWithTitle:@"No Data" message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 
 	[alertmsg show];
@@ -134,14 +141,14 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 }
 
 - (void)afterUserAsyncThreadCompletes:(NSNotification *)notification {
+    
+    sharedManager.userDataDownloaded = YES;
+    
 	_arrayOfUserModels = [notification userInfo][kArrayOfUserModels];
 	_user = [[User alloc]init];
 	_user = [_arrayOfUserModels objectAtIndex:0];
 
 	_arrayOfCompanies = [_user getAllCompanies];
-
-
-
 
 	/* ALL
 	   for (Company *company in _arrayOfCompanies) {
@@ -151,7 +158,8 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 
 	// ONE
 	Company *company = [_arrayOfCompanies objectAtIndex:0];
-	[self processIntervals:company];
+    NSLog(@"\n A P I  No 2 \n ");
+	//---->>>> [self processIntervals:company];
 
 	//[_companyTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 	//[spinner stopAnimating];
@@ -198,7 +206,7 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 }
 
 - (void)intervalDataFailed {
-	NSString *msg =  @"Failed to get data .";
+	NSString *msg =  @"interval Failed to get data .";
 	UIAlertView *alertmsg = [[UIAlertView alloc] initWithTitle:@"No Data" message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 
 
@@ -331,6 +339,7 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"\n F I L E -> F U N C T I O N : \n %s \n", __FUNCTION__);
 	_pinched = NO;
 	// [self.navigationController pushViewController:self.editMyClassViewController animated:YES];
 }
