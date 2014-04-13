@@ -28,6 +28,7 @@
 @end
 
 @implementation ViewController
+
 @synthesize reachability = _reachability, arrayOfCompanies = _arrayOfCompanies,
 companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, user = _user, intervalType = _intervalType;
 

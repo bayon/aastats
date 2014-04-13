@@ -66,6 +66,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="companyTableView" destination="iuN-f8-egC" id="LRf-cP-IIL"/>
                         <outlet property="label1" destination="FFd-ct-VUU" id="ist-1E-0V7"/>
                     </connections>
                 </viewController>

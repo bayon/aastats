@@ -149,6 +149,7 @@
 	if ([connection isEqual:postConnection]) {
 		if (postResponseData != nil) {
 			[self parseUserResponseData:postResponseData];
+           // [self viewJSONFromData:postResponseData];
 		}
 		else {
 			[[NSNotificationCenter defaultCenter] postNotificationName:kNotifyUserFail object:nil];

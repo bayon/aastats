@@ -11,7 +11,7 @@
 @implementation User
 
 
-@synthesize role,  preference, status ; //company, usersHomeCompany
+@synthesize role,  preference, status ,usersHomeCompany; //company, usersHomeCompany
 
 @synthesize arrayOfPreferences, arrayOfRoles, arrayOfStatuses, arrayOfCompanies = _arrayOfCompanies;
 @synthesize user_id, first_name, last_name, mobile_phone_number, alt_phone_number, alt_phone_type_id, email, created_at, updated_at, deleted_at;
@@ -20,7 +20,6 @@
 - (id)initWithJsonDictionary:(NSDictionary *)dict {
 	self = [super init];
 	if (self) {
-		NSLog(@"\n F I L E -> F U N C T I O N : \n %s \n", __FUNCTION__);
 		self.user_id                = dict[@"id"];
 		self.first_name             = dict[@"first_name"];
 		self.last_name              = dict[@"last_name"];
@@ -57,6 +56,7 @@
 							if ([keyAsString isEqualToString:@"companies"]) {
 								Company *company  = [[Company alloc] initWithJsonDictionary:dictionaryOfCompany];
 								[_arrayOfCompanies addObject:company];
+                                usersHomeCompany =  company;
 							}
 							// SUB-COMPANY
 							if (valueIsArray) {

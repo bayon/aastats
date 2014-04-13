@@ -11,9 +11,6 @@
 #import "Interval.h"
 
 
-// L E F T   O F F   H E R E    get this class set up , check tehm all and then see if we can do a successful download and parse.
-
-
 @interface Company : NSObject
 
 @property (nonatomic, retain) Pivot *pivot;
