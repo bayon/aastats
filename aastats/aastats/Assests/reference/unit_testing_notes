@@ -1,0 +1,148 @@
+//
+//  Music_SearchTests.m
+//  Music SearchTests
+//
+//  Created by Bayon Forte on 12/19/13.
+//  Copyright (c) 2013 Mocura. All rights reserved.
+//
+
+#import <XCTest/XCTest.h>
+#import "FBFAppDelegate.h"
+#import "FBFViewController.h"
+#import "MusicModel.h"
+#import "AsyncNetwork.h"
+#import "MusicCell.h"
+#import "OCMock.h"
+
+
+/**
+   This class is a unit test class that ...
+    -Standard XCTest for all service, model, and view classes
+
+ */
+
+@interface Music_SearchTests : XCTestCase {
+	FBFAppDelegate *appDelegate;
+	MusicModel *musicModel;
+	AsyncNetwork *asyncNetwork;
+	FBFViewController *view;
+	MusicCell *musicCell;
+	NSString *filePath;
+	NSString *content;
+	NSDictionary *dictionaryOfJson;
+	NSMutableArray *arrayOfMusicModels;
+	NSMutableData *jsonData;
+}
+
+@end
+
+@implementation Music_SearchTests
+
+- (void)setUp {
+	[super setUp];
+
+	appDelegate = [[UIApplication sharedApplication]delegate];
+	musicModel = [[MusicModel alloc]init];
+	asyncNetwork = [[AsyncNetwork alloc]init];
+	view = [[FBFViewController alloc]init];
+	musicCell = [[MusicCell alloc]init];
+    // PRE-MADE JSON for testing PARSE LOGIC
+	filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"txt"];
+	content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+	NSError *e;
+	dictionaryOfJson = [NSJSONSerialization JSONObjectWithData:[content dataUsingEncoding:NSUTF8StringEncoding]
+	                                                   options:NSJSONReadingMutableContainers
+	                                                     error:&e];
+
+	jsonData = [NSMutableData dataWithContentsOfFile:filePath options:NSDataReadingMappedIfSafe error:&e];
+	arrayOfMusicModels = [asyncNetwork parseResponseData:jsonData];
+}
+
+- (void)tearDown {
+	appDelegate = nil;
+	musicModel = nil;
+	asyncNetwork = nil;
+
+	[super tearDown];
+}
+
+#pragma mark - Standard XCTest for all service, model, and view classes.
+
+
+- (void)testMusicModel {
+	XCTAssertNotNil(musicModel, @"Cannot find the MusicModel");
+}
+
+- (void)testAsyncNetwork {
+	XCTAssertNotNil(asyncNetwork, @"AsyncNetwork missing");
+}
+
+- (void)testFBFViewController {
+	XCTAssertNotNil(view, @"FBFViewCOntroller is nil");
+}
+
+- (void)testMusicCell {
+	XCTAssertNotNil(musicCell, @"MusicCell is nil");
+}
+
+/**
+   This test pulls hard coded json string from a file and runs it through the parser, and checks the resulting model values against the initial data.
+ */
+- (void)testParserLogicFromJsonString {
+	for (int i = 0; i < [arrayOfMusicModels count]; i++) {
+		MusicModel *modelOne = arrayOfMusicModels[i];
+		NSString *expectedAlbumn;
+		NSString *givenAlbumn;
+		NSString *expectedArtist;
+		NSString *givenArtist;
+		NSString *expectedPopularity;
+		NSString *givenPopularity;
+
+		givenAlbumn = modelOne.album;
+		givenArtist = modelOne.artist;
+		givenPopularity = modelOne.popularity;
+		switch (i) {
+			case 0:
+				expectedAlbumn = @"Black Holes And Revelations";
+				expectedArtist = @"Muse";
+				expectedPopularity = @"0.75";
+
+				break;
+
+			case 1:
+				expectedAlbumn = @"Revelations of the Black Flame";
+				expectedArtist = @"1349";
+				expectedPopularity = @"0.19";
+
+				break;
+
+			case 2:
+				expectedAlbumn = @"Revelations of the Black Flame";
+				expectedArtist = @"1349";
+				expectedPopularity = @"0.15";
+
+				break;
+
+			case 3:
+				expectedAlbumn = @"Revelations in Black";
+				expectedArtist = @"Rick Moffatt";
+				expectedPopularity = @"0";
+		}
+		XCTAssertTrue([expectedAlbumn isEqualToString:givenAlbumn],
+		              @"\n FAIL: \n Strings are not equal \n %@ \n %@", givenAlbumn, expectedAlbumn);
+		XCTAssertTrue([expectedArtist isEqualToString:givenArtist],
+		              @"\n FAIL: \n Strings are not equal \n %@ \n %@", givenArtist, expectedArtist);
+		XCTAssertTrue([expectedPopularity isEqualToString:givenPopularity],
+		              @"\n FAIL: \n Strings are not equal \n %@ \n %@", givenPopularity, expectedPopularity);
+	}
+}
+
+- (void)testServiceResponse {
+	id mockDictionary = [OCMockObject mockForClass:[asyncNetwork class]];
+	[[[mockDictionary stub] andReturn:@[@"a", @"aa", @"aaa"]] parseResponseData:[OCMArg any]];
+	NSMutableArray *arrayResponse = [mockDictionary parseResponseData:jsonData];
+	int resultCount = (int)[arrayResponse count];
+	XCTAssertEqual(3, resultCount, @"Array should contain three elements");
+}
+
+@end

@@ -47,6 +47,10 @@
 		28CA1E1C18FAD795005C5AD4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CA1E1718FAD795005C5AD4 /* Reachability.m */; };
 		28CA1E1D18FAD795005C5AD4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CA1E1718FAD795005C5AD4 /* Reachability.m */; };
 		28CA1E1F18FAD814005C5AD4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CA1E1E18FAD814005C5AD4 /* SystemConfiguration.framework */; };
+		28CA1E2418FAEA6C005C5AD4 /* automation_notes in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E2218FAEA6C005C5AD4 /* automation_notes */; };
+		28CA1E2518FAEA6C005C5AD4 /* automation_notes in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E2218FAEA6C005C5AD4 /* automation_notes */; };
+		28CA1E2618FAEA6C005C5AD4 /* unit_testing_notes in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E2318FAEA6C005C5AD4 /* unit_testing_notes */; };
+		28CA1E2718FAEA6C005C5AD4 /* unit_testing_notes in Resources */ = {isa = PBXBuildFile; fileRef = 28CA1E2318FAEA6C005C5AD4 /* unit_testing_notes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +115,8 @@
 		28CA1E1618FAD795005C5AD4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		28CA1E1718FAD795005C5AD4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		28CA1E1E18FAD814005C5AD4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		28CA1E2218FAEA6C005C5AD4 /* automation_notes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = automation_notes; path = Assests/reference/automation_notes; sourceTree = "<group>"; };
+		28CA1E2318FAEA6C005C5AD4 /* unit_testing_notes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = unit_testing_notes; path = Assests/reference/unit_testing_notes; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +232,8 @@
 		28CA1DDA18FAD39B005C5AD4 /* reference */ = {
 			isa = PBXGroup;
 			children = (
+				28CA1E2218FAEA6C005C5AD4 /* automation_notes */,
+				28CA1E2318FAEA6C005C5AD4 /* unit_testing_notes */,
 				28CA1DDF18FAD47E005C5AD4 /* AA Stats App.markdown */,
 				28CA1DDD18FAD46B005C5AD4 /* project_setup */,
 			);
@@ -375,12 +383,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28CA1E2418FAEA6C005C5AD4 /* automation_notes in Resources */,
 				28CA1DBD18FAD0F7005C5AD4 /* Images.xcassets in Resources */,
 				28CA1DAF18FAD0F7005C5AD4 /* InfoPlist.strings in Resources */,
 				28CA1DE018FAD47E005C5AD4 /* AA Stats App.markdown in Resources */,
 				28CA1E1A18FAD795005C5AD4 /* interval_notes in Resources */,
 				28CA1DDE18FAD46B005C5AD4 /* project_setup in Resources */,
 				28CA1DB818FAD0F7005C5AD4 /* Main.storyboard in Resources */,
+				28CA1E2618FAEA6C005C5AD4 /* unit_testing_notes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,8 +398,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28CA1E2518FAEA6C005C5AD4 /* automation_notes in Resources */,
 				28CA1DCE18FAD0F7005C5AD4 /* InfoPlist.strings in Resources */,
 				28CA1E1B18FAD795005C5AD4 /* interval_notes in Resources */,
+				28CA1E2718FAEA6C005C5AD4 /* unit_testing_notes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
