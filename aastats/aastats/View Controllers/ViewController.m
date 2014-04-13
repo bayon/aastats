@@ -71,7 +71,9 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
     [_companyTableView reloadData];
     
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 44;
+}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -292,7 +294,7 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 #pragma mark - Table Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 3;
+	return 30;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
