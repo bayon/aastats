@@ -158,7 +158,7 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 
 	// ONE
 	Company *company = [_arrayOfCompanies objectAtIndex:0];
-    NSLog(@"\n A P I  No 2 \n ");
+    //NSLog(@"\n A P I  No 2 \n ");
 	//---->>>> [self processIntervals:company];
 
 	//[_companyTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];

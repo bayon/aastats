@@ -10,6 +10,4 @@
 #import "Constants.h"
 #import "Manager.h"
 
-@interface AAStats : NSObject
 
-@end
