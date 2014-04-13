@@ -12,7 +12,10 @@
 @interface ViewController : UIViewController
 {
 	Reachability *reachability;
+    Manager *sharedManager;
 }
+@property (nonatomic, retain) Manager *sharedManager;
+
 @property (nonatomic, retain) Reachability *reachability;
 @property (nonatomic, retain) NSMutableArray *arrayOfUserModels;
 @property (nonatomic, retain) NSMutableArray *arrayOfCompanies;
@@ -28,10 +31,4 @@
 - (IBAction)selectInterval:(id)sender;
 //-(void)refreshInterval:(NSString *)interval forCompanyId:(NSString *)companyId;
 
-
-
 @end
-
-
-// L E F T   O F F   H E R E
-// finished up the models , when trying to test I didn't get any data back. connection/service/password ???
