@@ -18,10 +18,11 @@
 	AsyncNetwork *asyncNetwork;
 	User *user;
 	NSString *intervalType;
+    Boolean  pinched;
 }
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) NSString *intervalType;
-@property (nonatomic) BOOL pinched;
+@property (nonatomic) Boolean pinched;
 
 @end
 
@@ -43,13 +44,39 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 
 	return self;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"child viewWillAppear : %@",[NSString stringWithFormat:@"Screen #%d", self.index]);
+    [self changeColorByIndex:self.index];
+}
+- (void)changeColorByIndex:(NSUInteger)index {
+	switch (index) {
+		case 0:
+			
+            self.view.backgroundColor = [UIColor redColor];
+			break;
+            
+		case 1:
+			
+             self.view.backgroundColor = [UIColor blueColor];
+			break;
+            
+		case 2:
+			
+             self.view.backgroundColor = [UIColor greenColor];
+			break;
+            
+		default:
+			break;
+	}
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-	self.screenNumber.text = [NSString stringWithFormat:@"Screen #%d", self.index];
-	self.backgroundImageView.image = [UIImage imageNamed:@"screenshot2"];
-	///---
+	//self.screenNumber.text = [NSString stringWithFormat:@"Screen #%d", self.index];
+    
+    
+	//self.backgroundImageView.image = [UIImage imageNamed:@"screenshot2"];
+	
 	_pinched = NO;
 	UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchDetected:)];
 	[self.view addGestureRecognizer:pinchRecognizer];
@@ -62,7 +89,6 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(afterIntervalAsyncThreadCompletes:) name:kNotifyIntervalSuccess object:asyncNetwork];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(intervalDataFailed) name:kNotifyIntervalFail object:nil];
 
-    // L E F T   O F F   H E R E   (put BOOL in Manager for user service flag.
     if(!sharedManager.userDataDownloaded){
         [self processUsers:self];
         

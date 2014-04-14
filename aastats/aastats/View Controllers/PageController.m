@@ -3,7 +3,6 @@
 
 
 #import "PageController.h"
-//#import "PageChildController.h"
 #import "ViewController.h"
 
 @interface PageController ()
@@ -45,14 +44,14 @@
 
 #pragma mark - Page View Controller
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-	NSLog(@"\n F I L E -> F U N C T I O N : \n %s \n", __FUNCTION__);
+	//NSLog(@"\n F I L E -> F U N C T I O N : \n %s \n", __FUNCTION__);
 	NSUInteger index = [(ViewController *)viewController index];
 
 	if (index == 0) {
-        [self changeColorByIndex:index];
+         
 		return nil;
 	}
-	[self changeColorByIndex:index];
+	 
 	// Decrease the index by 1 to return
 	index--;
 
@@ -60,9 +59,9 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-	NSLog(@"\n F I L E -> F U N C T I O N : \n %s \n", __FUNCTION__);
+	//NSLog(@"\n F I L E -> F U N C T I O N : \n %s \n", __FUNCTION__);
 	NSUInteger index = [(ViewController *)viewController index];
-	[self changeColorByIndex:index];
+	 
 	index++;
 
 	if (index == 3) {
@@ -72,24 +71,7 @@
 	return [self viewControllerAtIndex:index];
 }
 
-- (void)changeColorByIndex:(NSUInteger)index {
-	switch (index) {
-		case 0:
-			NSLog(@"\n  page index: %d",  index);
-			break;
 
-		case 1:
-			NSLog(@"\n  page index: %d",  index);
-			break;
-
-		case 2:
-			NSLog(@"\n  page index: %d",  index);
-			break;
-
-		default:
-			break;
-	}
-}
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
 	// The number of items reflected in the page indicator.
