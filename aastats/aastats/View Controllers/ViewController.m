@@ -290,10 +290,13 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0){
-        return @"Title1";
+        return @"The Meadows";
     }
     else if (section == 1){
-       return @"Title2";
+       return @"Arlington Place";
+    }
+    else if(section ==2 ){
+        return @"Franklin Park Place";
     }
     return @"foo haa";
 }
