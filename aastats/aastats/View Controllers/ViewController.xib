@@ -8,7 +8,6 @@
             <connections>
                 <outlet property="backgroundImageView" destination="3n6-df-nrr" id="xVS-nj-zTk"/>
                 <outlet property="companyTableView" destination="ciL-5d-Sq1" id="AuE-jR-lQv"/>
-                <outlet property="label1" destination="xtD-oR-07Z" id="9eR-jS-5wS"/>
                 <outlet property="screenNumber" destination="2ov-QM-zwQ" id="uVI-vi-Utd"/>
                 <outlet property="view" destination="1" id="suX-vr-xUz"/>
             </connections>
@@ -30,8 +29,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QlA-Q7-PYq">
-                    <rect key="frame" x="249" y="73" width="55" height="30"/>
+                    <rect key="frame" x="225" y="31" width="75" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Monthly">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -40,7 +41,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ciL-5d-Sq1">
-                    <rect key="frame" x="-5" y="140" width="320" height="428"/>
+                    <rect key="frame" x="0.0" y="69" width="320" height="499"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -49,8 +50,10 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdj-Pr-7gx">
-                    <rect key="frame" x="132" y="73" width="49" height="30"/>
+                    <rect key="frame" x="123" y="31" width="75" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Weekly">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -58,19 +61,12 @@
                         <action selector="selectInterval:" destination="-1" eventType="touchUpInside" id="Bea-1Q-6gD"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtD-oR-07Z">
-                    <rect key="frame" x="15" y="106" width="280" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0t-s2-Hvl">
-                    <rect key="frame" x="15" y="73" width="34" height="30"/>
+                    <rect key="frame" x="20" y="31" width="75" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Daily">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="Daily"/>
                     <connections>
                         <action selector="selectInterval:" destination="-1" eventType="touchUpInside" id="nur-67-3iO"/>
                     </connections>
