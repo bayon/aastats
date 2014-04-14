@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "AsyncNetwork.h"
-#import "Constants.h"
 #import "Company.h"
 #import "CompaniesCell.h"
 #import "User.h"
@@ -45,24 +44,34 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 	return self;
 }
 -(void)viewWillAppear:(BOOL)animated{
+    //set default bg color
+    self.parentViewController.view.backgroundColor = [UIColor orangeColor];
+    
+    
     NSLog(@"child viewWillAppear : %@",[NSString stringWithFormat:@"Screen #%d", self.index]);
-    [self changeColorByIndex:self.index];
+    [self trackTheIndex:self.index];
+    
+ 
 }
-- (void)changeColorByIndex:(NSUInteger)index {
+
+- (void)trackTheIndex:(NSUInteger)index {
+    
+    
+    
 	switch (index) {
 		case 0:
 			
-            self.view.backgroundColor = [UIColor redColor];
+            
 			break;
             
 		case 1:
 			
-             self.view.backgroundColor = [UIColor blueColor];
+            
 			break;
             
 		case 2:
 			
-             self.view.backgroundColor = [UIColor greenColor];
+            
 			break;
             
 		default:
@@ -234,57 +243,45 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
  */
 
 
+/// keep a constant vairable to hold the interval type , and based on it, int the viewWill Appear, keep color consistent.
 
 - (IBAction)selectInterval:(id)sender {
 	UIButton *btnPressed = (UIButton *)sender;
 	int btnTag = btnPressed.tag;
-
+    
+    NSLog(@"\n  %d \n",btnTag);
+    
 	switch (btnTag) {
 		case 1:
-			_intervalType = @"today";
+			
+            self.parentViewController.view.backgroundColor = [UIColor orangeColor];
+            //_companyTableView.sectionIndexBackgroundColor = [UIColor orangeColor]; //tried it
 			break;
 
 		case 2:
-			_intervalType = @"this_week";
+			
+            self.parentViewController.view.backgroundColor = [UIColor blueColor];
 			break;
 
 		case 3:
-			_intervalType = @"this_month";
+			
+             self.parentViewController.view.backgroundColor = [UIColor greenColor];
 			break;
 
 		default:
-			_intervalType = @"today";
+			//_intervalType = kIntervalToday;
+            //sharedManager.currentIntervalType = kIntervalToday;
 			break;
 	}
 	// call table reload and then each company will need to refresh interval
 	[_companyTableView reloadData];
 }
 
-/*
-   -(void)refreshInterval:(NSString *)interval forCompanyId:(NSString *)companyId{
-   Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
-   NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
-   if (networkStatus == NotReachable) {
-   NSString *msg = @"Please check your network";
-   UIAlertView *alertmsg = [[UIAlertView alloc] initWithTitle:@"Network" message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-
-   [alertmsg show];
-   }
-   else {
-   asyncNetwork = [[AsyncNetwork alloc]init];
-   NSURL *url = [NSURL URLWithString:@"http://hive.indatus.com/precompiled_reports/"];
-   NSDictionary *paramametersDictionary = [NSDictionary dictionaryWithObjectsAndKeys:interval, @"interval",
-   companyId, @"company_id",  nil];
-   [asyncNetwork getRequestToURL:url withParameters:paramametersDictionary];
-   }
-   }
- */
 
 - (void)afterIntervalAsyncThreadCompletes:(NSNotification *)notification {
 	// update each company here ? will it loop through these notifications?
 
 	NSLog(@"\n \n afterIntervalAsyncThreadCompletes \n \n");
-
 
 	// WHEN SHOUD I CALL  [self refreshTable];
 }
@@ -310,67 +307,26 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
         
     }
     vHeader.textLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 80.0)];
-	button.alpha = 0.7;
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)];
+	button.alpha = 0.1;
+    button.backgroundColor = [UIColor redColor];
 	// [button setImage: myPNGImage forState: UIControlStateNormal];
     
 	// Prepare target-action
 	[button    addTarget:self action:@selector(headerTapped:)
 	    forControlEvents:UIControlEventTouchUpInside];
-    
+    [vHeader setBackgroundColor:[UIColor colorWithRed:166 / 255.0 green:177 / 255.0 blue:186 / 255.0 alpha:1.0]];
 	[vHeader addSubview:button];
     
     
-	[vHeader setBackgroundColor:[UIColor colorWithRed:166 / 255.0 green:177 / 255.0 blue:186 / 255.0 alpha:1.0]];
+	 
     return vHeader;
 }
-/*
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-	// Create custom view to display section header...
-	
-	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 80.0)];
-	button.alpha = 0.7;
-	// [button setImage: myPNGImage forState: UIControlStateNormal];
-    
-	// Prepare target-action
-	[button    addTarget:self action:@selector(headerTapped:)
-	    forControlEvents:UIControlEventTouchUpInside];
-    
-	[view addSubview:button];
-    
-    
-	[view setBackgroundColor:[UIColor colorWithRed:166 / 255.0 green:177 / 255.0 blue:186 / 255.0 alpha:1.0]]; //your background color...
-	return view;
-}
-*/
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return 44;
 }
-/*
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-	// Create custom view to display section header...
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-	[label setFont:[UIFont boldSystemFontOfSize:12]];
-	//NSString *string = @"section header";
-	//[label setText:string];
-	[view addSubview:label];
-	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 80.0)];
-	button.alpha = 0.7;
-	// [button setImage: myPNGImage forState: UIControlStateNormal];
-    
-	// Prepare target-action
-	[button    addTarget:self action:@selector(headerTapped:)
-	    forControlEvents:UIControlEventTouchUpInside];
-    
-	[view addSubview:button];
-    
-    
-	[view setBackgroundColor:[UIColor colorWithRed:166 / 255.0 green:177 / 255.0 blue:186 / 255.0 alpha:1.0]]; //your background color...
-	return view;
-}
-*/
+
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

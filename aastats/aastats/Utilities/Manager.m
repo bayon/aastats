@@ -9,7 +9,7 @@
 #import "Manager.h"
 
 @implementation Manager
-@synthesize  userDataDownloaded;
+@synthesize  userDataDownloaded, currentIntervalType;
 #pragma mark Singleton Methods
 + (id)sharedManager {
     static Manager *sharedManager = nil;
@@ -25,6 +25,7 @@
     if (self) {
         //inits
         userDataDownloaded = NO;
+       // currentIntervalType = @"today";
         
     }
     return self;

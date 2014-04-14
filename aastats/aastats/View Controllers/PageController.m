@@ -38,6 +38,7 @@
 - (ViewController *)viewControllerAtIndex:(NSUInteger)index {
 	ViewController *childViewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
 	childViewController.index = index;
+    //childViewController.parentViewCOntroller
 
 	return childViewController;
 }

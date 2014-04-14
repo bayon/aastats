@@ -20,3 +20,10 @@ FOUNDATION_EXPORT NSString *const kArrayOfIntervalModels;
 FOUNDATION_EXPORT NSString *const kArrayOfCompaniesModels;
 FOUNDATION_EXPORT NSString *const kArrayOfRoleModels;
 
+FOUNDATION_EXPORT NSString *const kIntervalToday;
+FOUNDATION_EXPORT NSString *const kIntervalThisWeek;
+FOUNDATION_EXPORT NSString *const kIntervalThisMonth;
+
+
+
+ 

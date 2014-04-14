@@ -19,4 +19,8 @@ NSString *const kArrayOfIntervalModels      = @"arrayOfIntervalModels";
 NSString *const kArrayOfCompaniesModels     = @"arrayOfCompaniesModels";
 NSString *const kArrayOfRoleModels          = @"arrayOfRoleModels";
 
+NSString *const kIntervalToday              = @"today";
+NSString *const kIntervalThisWeek           = @"this_week";
+NSString *const kIntervalThisMonth          = @"this_month";
+
 
