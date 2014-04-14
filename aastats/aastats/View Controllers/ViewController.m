@@ -109,33 +109,6 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 	[_companyTableView reloadData];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 44;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-	/* Create custom view to display section header... */
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-	[label setFont:[UIFont boldSystemFontOfSize:12]];
-	NSString *string = @"section header";
-	[label setText:string];
-	[view addSubview:label];
-	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 80.0)];
-	button.alpha = 0.7;
-	// [button setImage: myPNGImage forState: UIControlStateNormal];
-
-	/* Prepare target-action */
-	[button    addTarget:self action:@selector(headerTapped:)
-	    forControlEvents:UIControlEventTouchUpInside];
-
-	[view addSubview:button];
-
-
-	[view setBackgroundColor:[UIColor colorWithRed:166 / 255.0 green:177 / 255.0 blue:186 / 255.0 alpha:1.0]]; //your background color...
-	return view;
-}
-
 #pragma mark -
 #pragma mark API call
 - (IBAction)processUsers:(id)sender {
@@ -317,6 +290,88 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 }
 
 #pragma mark - Table Delegate Methods
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0){
+        return @"Title1";
+    }
+    else if (section == 1){
+       return @"Title2";
+    }
+    return @"foo haa";
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    static NSString *header = @"customHeader";
+    UITableViewHeaderFooterView *vHeader;
+    vHeader = [tableView dequeueReusableHeaderFooterViewWithIdentifier:header];
+    if (!vHeader) {
+        vHeader = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:header];
+        
+    }
+    vHeader.textLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 80.0)];
+	button.alpha = 0.7;
+	// [button setImage: myPNGImage forState: UIControlStateNormal];
+    
+	// Prepare target-action
+	[button    addTarget:self action:@selector(headerTapped:)
+	    forControlEvents:UIControlEventTouchUpInside];
+    
+	[vHeader addSubview:button];
+    
+    
+	[vHeader setBackgroundColor:[UIColor colorWithRed:166 / 255.0 green:177 / 255.0 blue:186 / 255.0 alpha:1.0]];
+    return vHeader;
+}
+/*
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+	// Create custom view to display section header...
+	
+	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 80.0)];
+	button.alpha = 0.7;
+	// [button setImage: myPNGImage forState: UIControlStateNormal];
+    
+	// Prepare target-action
+	[button    addTarget:self action:@selector(headerTapped:)
+	    forControlEvents:UIControlEventTouchUpInside];
+    
+	[view addSubview:button];
+    
+    
+	[view setBackgroundColor:[UIColor colorWithRed:166 / 255.0 green:177 / 255.0 blue:186 / 255.0 alpha:1.0]]; //your background color...
+	return view;
+}
+*/
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 44;
+}
+/*
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+	// Create custom view to display section header...
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+	[label setFont:[UIFont boldSystemFontOfSize:12]];
+	//NSString *string = @"section header";
+	//[label setText:string];
+	[view addSubview:label];
+	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 80.0)];
+	button.alpha = 0.7;
+	// [button setImage: myPNGImage forState: UIControlStateNormal];
+    
+	// Prepare target-action
+	[button    addTarget:self action:@selector(headerTapped:)
+	    forControlEvents:UIControlEventTouchUpInside];
+    
+	[view addSubview:button];
+    
+    
+	[view setBackgroundColor:[UIColor colorWithRed:166 / 255.0 green:177 / 255.0 blue:186 / 255.0 alpha:1.0]]; //your background color...
+	return view;
+}
+*/
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 30;
