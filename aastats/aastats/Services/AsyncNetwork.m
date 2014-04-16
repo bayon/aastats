@@ -82,35 +82,20 @@
 	return returnData;
 }
 
-
-- (IBAction)getRequestToURL:(NSString *)urlString withParameters:(NSString *)parameterString  withUsername:(NSString *)username andPassword:(NSString *)password{
-	
-    /*
-    >Username and pass should be given in http basic authentication headers instead of in the get request.
-     Then API send application/json as the content type and it should work.
-     >The API shoes views if it is text/HTML content type and json if that is requested
-     >The info in the markdown doc is copied from real test requests I made with those credentials so everything should be working for you.
-     >Content type and auth will be set as headers on the request.
-    */
+- (IBAction)getRequestToURL:(NSString *)urlString withUsername:(NSString *)username andPassword:(NSString *)password{
     
-    NSString *urlFinalString = [NSString stringWithFormat:@"%@%@",urlString,parameterString];
-    NSURL *url = [NSURL URLWithString:urlFinalString];
-    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
-    [theRequest setHTTPMethod:@"GET"]; //@"POST"
-    [theRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];                     //@"application/json; charset=UTF-8"
-    [theRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];               //@"application/json; charset=UTF-8"
-    NSString *authorizationString = [NSString stringWithFormat:@"%@:%@",username, password];
-        // other alternative formats tried ...  @"%@:%@"  @"%@,%@"  @"%@&%@"   @"Basic %@:%@"
-    [theRequest setValue:authorizationString forHTTPHeaderField:@"Authorization"];
-	getConnection = [[NSURLConnection alloc] initWithRequest:theRequest
-	                                                delegate:self];
-	[getConnection start];
+    NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *authStr = [NSString stringWithFormat:@"%@:%@", username, password];
+    NSLog(@"\nREQUEST AND CREDENTIALS: %@ | %@",url,authStr);
+    NSData *authData = [authStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *authValue = [NSString stringWithFormat:@"Basic %@", [authData base64Encoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    getConnection = [[NSURLConnection alloc] initWithRequest:request
+                     
+                                                    delegate:self];
+    [getConnection start];
     
-     NSLog(@"\n request and authentication:\n  %@ | %@ \n ",urlFinalString,authorizationString);
-    //The above code yields these results:
-    //request and authentication:
-    // http://hive.indatus.com/precompiled_reports/?interval=today&company_id=23 | Basic bwebb@indatus.com:telecom1
-
 }
 
 #pragma mark -  NSURL Delegate Methods

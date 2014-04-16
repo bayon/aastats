@@ -10,13 +10,8 @@
 
 @interface AsyncNetwork : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
-
-
-
 - (NSMutableArray *)parseUserResponseData:(NSMutableData *)mutableResponseData;
 - (IBAction)postRequestToURL:(NSURL *) url withParameters:(NSDictionary *)parameterDictionary;
+- (IBAction)getRequestToURL:(NSString *)urlString withUsername:(NSString *)username andPassword:(NSString *)password;
 
-
-- (IBAction)getRequestToURL:(NSString *)urlString withParameters:(NSString *)parameterString withUsername:(NSString *)username andPassword:(NSString *)password;
- 
 @end

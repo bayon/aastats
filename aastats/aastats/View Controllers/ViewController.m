@@ -13,6 +13,8 @@
 #import "User.h"
 #import "UserCell.h"
 
+static NSString *const kEndpointPrecompiledReports = @"http://hive.indatus.com/precompiled_reports/";
+
 @interface ViewController () {
 	AsyncNetwork *asyncNetwork;
 	User *user;
@@ -167,7 +169,8 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 	// ONE
 	Company *company = [_arrayOfCompanies objectAtIndex:0];
     //NSLog(@"\n A P I  No 2 \n ");
-	//---->>>> [self processIntervals:company];
+	//---->>>>
+    [self processIntervals:company];
 
 	//[_companyTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 	//[spinner stopAnimating];
@@ -181,30 +184,19 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 	if (networkStatus == NotReachable) {
 		NSString *msg = @"Please check your network";
 		UIAlertView *alertmsg = [[UIAlertView alloc] initWithTitle:@"Network" message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-
+        
 		[alertmsg show];
 	}
 	else {
 		asyncNetwork = [[AsyncNetwork alloc]init];
-		NSString *urlString =  @"http://hive.indatus.com/precompiled_reports/";
-
-		NSString *parameterString = [NSString stringWithFormat:@"?interval=%@&company_id=%@", _intervalType, company.primary_id]; // _user.password
-
-		[asyncNetwork getRequestToURL:urlString withParameters:parameterString withUsername:@"bwebb@indatus.com" andPassword:@"telecom1"];
-
-		//update company here add to array of modified companies...
+		NSString *urlString =  kEndpointPrecompiledReports;
+        ///////   HARD CODE INTERVAL :: FOR NOW:   L E F T   O F F    H E R E//_intervalType
+		NSString *urlRequestString = [NSString stringWithFormat:@"%@%@/%@", urlString, @"this_month", company.primary_id]; // _user.password
+        
+		[asyncNetwork getRequestToURL:urlRequestString   withUsername:@"bwebb@indatus.com" andPassword:@"telecom1"];
+        
 	}
 }
-
-/*
-   $ curl -i -X POST http://snej.cloudant.com/dbname/
-   HTTP/1.1 401 Unauthorized
-   WWW-Authenticate: Basic realm="Cloudant Private Database"
-
-   $ curl -i -X PUT https://domain.iriscouch.com/dbname
-   HTTP/1.1 401 Unauthorized
-   WWW-Authenticate: Basic realm="administrator"
- */
 
 
 
