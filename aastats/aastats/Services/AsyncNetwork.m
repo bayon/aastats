@@ -11,7 +11,6 @@
 #import "Company.h"
 #import "User.h"
 
-
 @interface AsyncNetwork () {
 	NSURLConnection *postConnection;
 	NSMutableData *postResponseData;
@@ -19,7 +18,6 @@
 	NSURLConnection *getConnection;
 	NSMutableData *getResponseData;
 }
-
 
 @property (nonatomic, retain) NSURLConnection *postConnection;
 @property (nonatomic, retain) NSMutableData *postResponseData;
@@ -113,9 +111,7 @@
 		[postResponseData appendData:data];
 	}
 	else if ([connection isEqual:getConnection]) {
-
         [getResponseData appendData:data];
-
 	}
 }
 
@@ -124,9 +120,7 @@
 		[[NSNotificationCenter defaultCenter] postNotificationName:kNotifyUserFail object:nil];
 	}
 	else if ([connection isEqual:getConnection]) {
-
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyIntervalFail object:nil];
-
 	}
 }
 
@@ -141,23 +135,12 @@
 		}
 	}
 	else if ([connection isEqual:getConnection]) {
-
-		////////////////////////////////////////
-		//   V I E W   R E S P O N S E   ///////
-		[self viewJSONFromData:getResponseData];
-		////////////////////////////////////////
-        
-        
         if(getResponseData != nil){
-            
-            NSDictionary *dictionaryOfIntervalModels = [self parseIntervalResponseData:getResponseData];
-            // how do I get this back to the block?
-            NSLog(@"\n\n get data: %@",dictionaryOfIntervalModels);
-            
-            //Invalid credentials
-        }
-        
-
+            [self parseIntervalResponseData:getResponseData];
+            // [self viewJSONFromData:postResponseData];
+        }else {
+			[[NSNotificationCenter defaultCenter] postNotificationName:kNotifyIntervalFail object:nil];
+		}
 	}
 }
 
@@ -178,10 +161,8 @@
 		    [NSJSONSerialization JSONObjectWithData:mutableResponseData
 		                                    options:NSJSONReadingMutableContainers
 		                                      error:&e];
-
 		User *user = [[User alloc] initWithJsonDictionary:dictionaryOfJsonFromResponseData];
 		[localArrayOfUserModels addObject:user];
-
 		NSDictionary *dictionaryOfUserModels = @{ kArrayOfUserModels : localArrayOfUserModels };
 		[[NSNotificationCenter defaultCenter] postNotificationName:kNotifyUserSuccess object:self userInfo:dictionaryOfUserModels];
 	}
@@ -189,32 +170,39 @@
 	{
 		[[NSNotificationCenter defaultCenter] postNotificationName:kNotifyUserFail object:nil];
 	}
-
-
 	return localArrayOfUserModels;
 }
 
-- (NSDictionary *)parseIntervalResponseData:(NSMutableData *)mutableResponseData {
-    NSMutableArray *localArrayOfIntervals = [[NSMutableArray alloc] init];
-    NSDictionary *dictionaryOfIntervalModels;
+- (NSMutableArray *)parseIntervalResponseData:(NSMutableData *)mutableResponseData {
+    //NSMutableArray *localArrayOfIntervals = [NSJSONSerialization JSONObjectWithData:mutableResponseData options:NSJSONReadingMutableContainers error:nil];
+    NSMutableArray *mutableArray = [[NSMutableArray alloc]init];
     @try {
 		NSError *e;
-		NSDictionary *dictionaryOfJsonFromResponseData =
+		NSArray *arrayOfJsonFromResponseData =
         [NSJSONSerialization JSONObjectWithData:mutableResponseData
                                         options:NSJSONReadingMutableContainers
                                           error:&e];
         
-		Interval *interval = [[Interval alloc] initWithJsonDictionary:dictionaryOfJsonFromResponseData];
-		[localArrayOfIntervals addObject:interval];
+        //CLASS TYPE
+        NSLog(@"\n CLASS TYPE: %@", [[arrayOfJsonFromResponseData class] description]);
+        NSLog(@"dictionaryOfJsonFromResponseData : %@",arrayOfJsonFromResponseData);
+		for(NSDictionary *dictOfInterval in arrayOfJsonFromResponseData){
+            Interval *interval = [[Interval alloc] initWithJsonDictionary:dictOfInterval];
+            [mutableArray addObject:interval];
+        }
         
-		 dictionaryOfIntervalModels = @{ kArrayOfIntervalModels : localArrayOfIntervals };
-		//[[NSNotificationCenter defaultCenter] postNotificationName:kNotifyIntervalSuccess object:self userInfo:dictionaryOfUserModels];
+        
+        
+        NSDictionary* dictionaryOfIntervalModels = @{kArrayOfIntervalModels: mutableArray} ;
+        NSLog(@"\n parse: success");
+		[[NSNotificationCenter defaultCenter] postNotificationName:kNotifyIntervalSuccess object:self userInfo:dictionaryOfIntervalModels];
 	}
 	@catch (NSException *exception)
 	{
-		//[[NSNotificationCenter defaultCenter] postNotificationName:kNotifyIntervalFail object:nil];
+		 NSLog(@"\n parse: fail");
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyIntervalFail object:nil];
 	}
-    return dictionaryOfIntervalModels;
+    return mutableArray;
 }
 @end
 

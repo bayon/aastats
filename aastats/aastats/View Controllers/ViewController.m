@@ -12,16 +12,19 @@
 #import "CompaniesCell.h"
 #import "User.h"
 #import "UserCell.h"
+#import "Interval.h"
 
 static NSString *const kEndpointPrecompiledReports = @"http://hive.indatus.com/precompiled_reports/";
 
 @interface ViewController () {
 	AsyncNetwork *asyncNetwork;
 	User *user;
+    Interval *interval;
 	NSString *intervalType;
     Boolean  pinched;
 }
 @property (nonatomic, retain) User *user;
+@property (nonatomic, retain) Interval *interval;
 @property (nonatomic, retain) NSString *intervalType;
 @property (nonatomic) Boolean pinched;
 
@@ -29,8 +32,9 @@ static NSString *const kEndpointPrecompiledReports = @"http://hive.indatus.com/p
 
 @implementation ViewController
 @synthesize sharedManager = _sharedManager;
-@synthesize reachability = _reachability, arrayOfCompanies = _arrayOfCompanies,
-companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, user = _user, intervalType = _intervalType, pinched = _pinched;
+@synthesize reachability = _reachability, arrayOfCompanies = _arrayOfCompanies, arrayOfIntervalModels = _arrayOfIntervalModels,
+companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, user = _user, intervalType = _intervalType, pinched = _pinched,
+interval = _interval;
 
 @synthesize label1 = _label1;
 @synthesize backgroundImageView = _backgroundImageView;
@@ -269,12 +273,14 @@ companyTableView = _companyTableView, arrayOfUserModels = _arrayOfUserModels, us
 	[_companyTableView reloadData];
 }
 
-
 - (void)afterIntervalAsyncThreadCompletes:(NSNotification *)notification {
 	// update each company here ? will it loop through these notifications?
 
 	NSLog(@"\n \n afterIntervalAsyncThreadCompletes \n \n");
-
+    _arrayOfIntervalModels = [notification userInfo][kArrayOfIntervalModels];
+	_interval  = [[Interval alloc]init];
+	_interval = [_arrayOfIntervalModels objectAtIndex:0];
+    NSLog(@"\n DO we have data? %@", _interval.company_id);
 	// WHEN SHOUD I CALL  [self refreshTable];
 }
 
