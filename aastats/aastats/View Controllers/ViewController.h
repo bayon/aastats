@@ -19,6 +19,7 @@
 @property (nonatomic, retain) Reachability *reachability;
 @property (nonatomic, retain) NSMutableArray *arrayOfUserModels;
 @property (nonatomic, retain) NSMutableArray *arrayOfCompanies;
+@property (nonatomic, retain) NSMutableArray *arrayOfIntervalModels;
 @property (nonatomic, weak) IBOutlet UITableView *companyTableView;
 @property (nonatomic, weak) IBOutlet UILabel *label1;
 
